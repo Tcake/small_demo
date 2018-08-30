@@ -165,6 +165,16 @@ def create_thr():
     info().info('创建成功，同户人表id：'+TB_THR_ID)
 
 
+def update():
+    tb_ids = [TB_JSZ_ID, TB_THR_ID, TB_XSZ_ID]
+    url = "{}/api/tb/update?access_token={}&tb_ids={}".format(URL, TOKEN, json.dumps(tb_ids))
+    result = json.loads(requests.post(url).content)
+    if not result['status'] == '0':
+        info().error('联级更新失败:{}'.format(result['errstr']))
+        raise ValueError
+    info().info('联级更新成功！')
+
+
 # 初始化数据库和数据表
 def init():
     create_ds()
@@ -175,4 +185,4 @@ def init():
 
 if __name__ == '__main__':
     # init()
-    commit(TB_THR_ID)
+    update()

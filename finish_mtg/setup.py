@@ -17,5 +17,5 @@ if sys.platform == "win32":
 #         executables = [Executable("guifoo.py", base=base)])
 
 exe = Executable(script="main.py", base=base)
-buildOptions = dict(excludes=["tkinter"], includes=["idna.idnadata"], optimize=1)
+buildOptions = dict(excludes=["tkinter"], includes=["idna.idnadata", "certifi", ], optimize=1)
 setup(name="MTG", version="1.0", description="test", executables=[exe], options=dict(build_exe=buildOptions))
